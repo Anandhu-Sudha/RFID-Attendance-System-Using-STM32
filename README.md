@@ -78,7 +78,7 @@ The system is suitable for classrooms, offices, or secured entry areas where mon
 
 ![Image](https://github.com/user-attachments/assets/1dfca586-cdaf-4ba2-9450-b4d53130db3e)
 
-This diagram should show connections between STM32F103C8T6, RC522, DS1307, OLED, and UART module.
+This diagram shows the connections between STM32F103C8T6, RC522, DS1307, OLED, and UART module.
 
 ---
 ## 🎡CUBE IDE Configuration
