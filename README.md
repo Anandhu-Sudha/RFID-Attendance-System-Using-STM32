@@ -48,6 +48,7 @@ The system is suitable for classrooms, offices, or secured entry areas where mon
 - 1 × **DS1307 RTC Module**
 - 1 × **1.3" OLED Display (I2C, SSD1306)**
 - 1 × **UART-to-TTL USB Converter**
+- 1 x **stlink v2**
 - 3 × **RFID Cards/Tags**
 - Jumper Wires, Breadboard
 - **Power Source**: USB from UART module
@@ -85,10 +86,11 @@ This diagram should show connections between STM32F103C8T6, RC522, DS1307, OLED,
 
 1. Clone the firmware source code into STM32CubeIDE.
 2. Connect modules as per the connection diagram.
-3. Flash the code to the STM32 board.
-4. Run the Python logger script in Visual Studio Code.
-5. Open the serial port (e.g., COM7) at 115200 baud.
-6. Scan RFID tags to log and display attendance info.
+3. Flash the code to the STM32 board using stlink v2.
+4. Connect the uart-ttl connector to USB port and check which COM port it is connected.
+5. Run the Python logger script in Visual Studio Code.
+6. The output can be observed in the output terminal of the python code.
+7. Scan RFID tags to log and display attendance info.
 
 ---
 
