@@ -1,1 +1,127 @@
-# RFID-Attendance-System-Using-STM32
+# RFID Attendance System Using STM32F103C8T6
+**Date**: 22-07-2025
+
+This project demonstrates an **RFID Attendance System** based on the **STM32F103C8T6 microcontroller**. The system reads RFID tags using an RC522 module and logs attendance data with a timestamp from the DS1307 RTC. The information is displayed on a 1.3" I2C OLED and logged to a PC using a UART-based Python data logger.
+![Image](https://github.com/user-attachments/assets/0f80326b-caec-4e2b-a8e0-61232562e1c6)
+![Image](https://github.com/user-attachments/assets/814730a7-087f-4c18-ada7-5d37843cec37)
+
+## 🤖 Working video
+ipo verum 
+
+---
+
+## 🔍 Overview
+
+This project is built to automate the attendance recording process using contactless RFID cards. Each scanned card displays the associated user details and timestamp on the OLED display and transmits the data to a computer via UART.
+
+The system is suitable for classrooms, offices, or secured entry areas where monitoring and logging personnel activity is important.
+
+---
+
+## 🧭 Development Journey
+
+- Developed using **STM32CubeIDE** with STM32 HAL libraries for peripheral interfacing.
+- The entire setup was powered by a **UART-to-TTL USB module**, which also served as the serial communication link to a Python script in **Visual Studio Code**.
+- Tested using **3 RFID cards**, each having a unique UID to simulate multiple users.
+- Timestamp from **DS1307 RTC** was used to record check-in/check-out time accurately.
+- A compact **1.3" SSD1306 I2C OLED** was used for quick visual feedback.
+- Output format example:
+
+  
+---
+
+## 🚀 Key Features
+
+- **Real-Time Attendance Logging** using RFID cards
+- **OLED Display Output** for user identification and timestamp
+- **RTC Timestamp** (from DS1307) ensures accurate logging
+- **UART Communication** for data logging to PC
+- **Python Logger** captures data to CSV on the PC
+- **Minimal Power** consumption via USB
+
+---
+
+## 🧰 Hardware Components
+
+- 1 × **STM32F103C8T6 Blue Pill Board**
+- 1 × **RC522 RFID Reader Module**
+- 1 × **DS1307 RTC Module**
+- 1 × **1.3" OLED Display (I2C, SSD1306)**
+- 1 × **UART-to-TTL USB Converter**
+- 3 × **RFID Cards/Tags**
+- Jumper Wires, Breadboard
+- **Power Source**: USB from UART module
+
+---
+
+## 🛠️ Working Principle
+
+1. **Initialization**:
+ - On boot, the OLED displays project title and waits for card scan.
+
+2. **Card Detection**:
+ - RC522 detects a valid RFID tag.
+ - UID is checked against pre-defined users.
+
+3. **Time Logging**:
+ - DS1307 provides the current date and time.
+ - OLED displays: `IN - Anandhu S (EMP069) at 16:57:37`
+
+4. **Data Transfer**:
+ - The same string is sent via UART.
+ - Python script captures and appends to a CSV file.
+
+---
+
+## 📊 Connection Diagram
+
+> *(Insert connection diagram image here)*
+
+This diagram should show connections between STM32F103C8T6, RC522, DS1307, OLED, and UART module.
+
+---
+
+## 🧪 Getting Started
+
+1. Clone the firmware source code into STM32CubeIDE.
+2. Connect modules as per the connection diagram.
+3. Flash the code to the STM32 board.
+4. Run the Python logger script in Visual Studio Code.
+5. Open the serial port (e.g., COM7) at 115200 baud.
+6. Scan RFID tags to log and display attendance info.
+
+---
+
+## 🛠️ Tools Used
+
+- **STM32CubeIDE** (Firmware Development)
+- **STM32 HAL Libraries**
+- **Python** (Serial Communication and CSV Logging)
+- **Visual Studio Code** (Python script development)
+
+---
+
+## 🔮 Future Enhancements
+
+- Add **EEPROM or SD card** backup logging
+- Introduce **Wi-Fi (ESP8266)** for cloud sync
+- Add **Buzzer/LED alert** for duplicate scans or unauthorized cards
+- Include **GUI Interface** on PC for data visualization
+
+---
+
+## 📁 Folder Contents
+
+- `/Core` – STM32 main firmware source
+- `/PythonLogger` – Python script for UART CSV logging
+- `/Images` – Screenshots, card UID logs, OLED output
+- `/Diagram` – *(To be added)* circuit connection diagram
+
+---
+
+## 📌 Notes
+
+- The board is powered directly via the UART module.
+- RTC battery backup ensures timekeeping even when powered off.
+- Tested on 22-07-2025 with 3 unique cards.
+
