@@ -76,12 +76,36 @@ The system is suitable for classrooms, offices, or secured entry areas where mon
 
 ## 📊 Connection Diagram
 
-> *(Insert connection diagram image here)*
+![Image](https://github.com/user-attachments/assets/1dfca586-cdaf-4ba2-9450-b4d53130db3e)
 
 This diagram should show connections between STM32F103C8T6, RC522, DS1307, OLED, and UART module.
 
 ---
+## 🎡CUBE IDE Configuration
+## System core
+- RCC -> High Speed Clock (HSE) -> Crystal/Ceramic resonator
+- SYS -> Debug -> Serial wire
+## Connectivity
+- I2C1 for oled display (should be in fast mode)
+- I2C2 for rtc module in normal mode.
+- SPI1 for rc522 module, full duplex master, (in configuration - Prescalar (baud rate) = 8)
+- USART1 - Asynchronous, set baud rate according to your need. (mine 115200)
+## Additional
+- set PC13 as gpio output for using in-built led
+- set PA4 as gpio output
+- set PB0 as gpio output
 
+## 🪜 Steps :
+1. Create a new project and configure it as mentioned in the cube ide configuration.
+2. Under project name -> Core-> there will be 'inc' and 'src' .
+3. Copy the .h files to inc folder and .c files to the src folder.
+4. Copy the contents of 'main.c' contents to your main.c file.
+5. Build and make sure there's no error and warnings.
+6. Create the hex file.
+    - Right Click project name, properties, c/c++ buil, settings, mcu post build outputs, tick create hex file, apply and close.
+7. Flash the hex file using stmcube programmer or stlink utility, (some clone boards cannot be flashed directly from the stmcube ide).
+
+ 
 ## 🧪 Getting Started
 
 1. Clone the firmware source code into STM32CubeIDE.
@@ -114,7 +138,7 @@ This diagram should show connections between STM32F103C8T6, RC522, DS1307, OLED,
 
 ## 📁 Folder Contents
 
-- `/Core` – STM32 main firmware source
+- `/STM32` – STM32 codes (inc , src, main)
 - `/PythonLogger` – Python script for UART CSV logging
 - `/Images` – Screenshots, card UID logs, OLED output
 - `/Diagram` – *(To be added)* circuit connection diagram
