@@ -66,7 +66,9 @@ The system is suitable for classrooms, offices, or secured entry areas where mon
 
 3. **Time Logging**:
  - DS1307 provides the current date and time.
- - OLED displays: `IN - Anandhu S (EMP069) at 16:57:37`
+ - OLED displays: `Time: 12:35:27 Anandhu S
+(EMP069)
+Entered `
 
 4. **Data Transfer**:
  - The same string is sent via UART.
@@ -122,6 +124,7 @@ This diagram shows the connections between STM32F103C8T6, RC522, DS1307, OLED, a
 
 - **STM32CubeIDE** (Firmware Development)
 - **STM32 HAL Libraries**
+- **STLINK Utility**
 - **Python** (Serial Communication and CSV Logging)
 - **Visual Studio Code** (Python script development)
 
