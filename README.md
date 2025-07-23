@@ -7,6 +7,7 @@ This project demonstrates an **RFID Attendance System** based on the **STM32F103
 
 ## 🤖 Working video
 [![Watch the demo](https://img.youtube.com/vi/TFU80P6rrd0/0.jpg)](https://youtu.be/TFU80P6rrd0)
+
 click on the image to play
 
 
