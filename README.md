@@ -145,9 +145,8 @@ This diagram shows the connections between STM32F103C8T6, RC522, DS1307, OLED, a
 ## 📁 Folder Contents
 
 - `/STM32` – STM32 codes (inc , src, main)
-- `/PythonLogger` – Python script for UART CSV logging
-- `/Images` – Screenshots, card UID logs, OLED output
-- `/Diagram` – *(To be added)* circuit connection diagram
+- `/Python_codes` – Python script for UART CSV logging
+- `/Images & videos` – Diagram, video
 
 ---
 
