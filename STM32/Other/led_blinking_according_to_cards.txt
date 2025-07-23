@@ -1,0 +1,68 @@
+// we have already fetched the values of the card by displaying it to the uart terminal, so the card numbers are : 
+My card numbers are:
+13 32 62 2D 6E
+1B 0E 8D 02 9A
+13 6A C0 C2 7B
+
+
+/* USER CODE BEGIN Includes */
+#include "rc522.h"
+#include "string.h"
+/* USER CODE END Includes */
+
+/* USER CODE BEGIN PV */
+uint8_t status;
+uint8_t str[MAX_LEN]; // Max_LEN = 16
+uint8_t sNum[5];
+/* USER CODE END PV */
+ 
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_SPI1_Init();
+  MX_USART1_UART_Init();
+
+  /* USER CODE BEGIN 2 */
+  MFRC522_Init();
+  /* USER CODE END 2 */
+
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    
+	    status = MFRC522_Request(PICC_REQIDL, str);
+	    if (status == MI_OK) // Card is present
+	    {
+	        status = MFRC522_Anticoll(str);
+	        if (status == MI_OK) // UID successfully read
+	        {
+	            memcpy(sNum, str, 5);
+	            // Compare UID and act
+	            if ((str[0] == 0x13) && (str[1] == 0x32) && (str[2] == 0x62) && (str[3] == 0x2D) && (str[4] == 0x6E))
+	            {
+	                // UID: 13 32 62 2D 6E
+	                HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET); // LED ON
+	                HAL_Delay(100); // Delay for 100 ms
+	            }
+	            else if ((str[0] == 0x1B) && (str[1] == 0x0E) && (str[2] == 0x8D) && (str[3] == 0x02) && (str[4] == 0x9A))
+	            {
+	                // UID: 1B 0E 8D 02 9A
+	                HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET); // LED ON
+	                HAL_Delay(300); // Delay for 300 ms
+	            }
+	            else if ((str[0] == 0x13) && (str[1] == 0x6A) && (str[2] == 0xC0) && (str[3] == 0xC2) && (str[4] == 0x7B))
+	            {
+	                // UID: 13 6A C0 C2 7B
+	                HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET); // LED ON
+	                HAL_Delay(600); // Delay for 600 ms
+	            }
+
+
+
+	        }
+	    }
+	    else
+	    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 1); // Turn LED off
+
+	    HAL_Delay(100); // Small delay to avoid repeated detections    
+  }
+/* USER CODE END WHILE */

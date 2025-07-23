@@ -1,0 +1,3 @@
+ds1307 only support normal i2c mode, 3.3v and gnd, sda , scl (fast mode is not supported).
+i2c1.
+usart1.

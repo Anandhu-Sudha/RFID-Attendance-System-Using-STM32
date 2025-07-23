@@ -1,0 +1,60 @@
+// use this code to read the values of card using the rfid reader and display it on the uart terminal, we need to have the values of that card later.
+
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include "rc522.h"
+#include "string.h"
+/* USER CODE END Includes */
+
+/* USER CODE BEGIN PV */
+uint8_t status;
+uint8_t str[MAX_LEN]; // Max_LEN = 16
+uint8_t sNum[5];
+/* USER CODE END PV */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_SPI1_Init();
+  MX_USART1_UART_Init();
+
+
+  /* USER CODE BEGIN 2 */
+  MFRC522_Init();
+  /* USER CODE END 2 */
+
+ /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+	    status = MFRC522_Request(PICC_REQIDL, str);
+	    if (status == MI_OK) // Card is present
+	    {
+	        status = MFRC522_Anticoll(str);
+	        if (status == MI_OK) // UID successfully read
+	        {
+	            memcpy(sNum, str, 5);
+
+	            char header[] = "UID: ";
+	            HAL_UART_Transmit(&huart1, (uint8_t*)header, sizeof(header) - 1, HAL_MAX_DELAY);
+
+	            for (int i = 0; i < 5; i++) {
+	                uint8_t byte = str[i];
+	                char hex[3];
+
+	                hex[0] = "0123456789ABCDEF"[byte >> 4];
+	                hex[1] = "0123456789ABCDEF"[byte & 0x0F];
+	                hex[2] = ' ';
+
+	                HAL_UART_Transmit(&huart1, (uint8_t*)hex, 3, HAL_MAX_DELAY);
+	            }
+
+	            char newline[] = "\r\n";
+	            HAL_UART_Transmit(&huart1, (uint8_t*)newline, sizeof(newline) - 1, HAL_MAX_DELAY);
+	            HAL_Delay(500); // Wait before next scan
+	        }
+	    }
+
+	    HAL_Delay(100); // Small delay to avoid repeated detections
+
+  }
+  /* USER CODE END WHILE */

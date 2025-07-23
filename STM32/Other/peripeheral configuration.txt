@@ -1,0 +1,28 @@
+STM32CubeIDE Settings
+Click RCC → High Speed Clock (HSE) to Crystal/Ceramic Resonator
+
+Click Clock Configuration tab → HCLK (MHz) to 72
+
+Click Pinout and Configuration tab
+
+Click connectivity → Click SPI1
+
+For Mode select Full Duplex Master
+
+Configuration → Parameter Settings
+
+Change prescalar (for Baud rate) to 8
+
+Set PA4 to GPIO_Output
+
+Set PB0 to GPIO_Output
+
+Set PC13 to GPIO_Output
+
+Libraries
+Inside Core/Inc Folder
+-----------------------
+rc522.h
+Inside Core/Src Folder
+-----------------------
+rc522.c
